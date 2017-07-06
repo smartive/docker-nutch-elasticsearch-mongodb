@@ -1,0 +1,21 @@
+nutch:
+  image: apache/nutch
+  ports:
+    - "8083:8080"
+    - "8084:8081"
+  links:
+    - "mongodb:mongodb"
+    - "elasticsearch:elasticsearch"
+  environment:
+    - SEEDLIST="http://reddit.com/r/node/"
+mongodb:
+  image: mongo
+  ports:
+    - "27020:27017"
+  volumes:
+    - "./data/mongo:/data/db"
+elasticsearch:
+  image: elasticsearch:5
+  ports:
+    - "9200:9200"
+    - "9300:9300"
