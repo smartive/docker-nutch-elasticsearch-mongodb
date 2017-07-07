@@ -1,5 +1,5 @@
 nutch:
-  image: apache/nutch:release-1.13
+  build: .
   ports:
     - "8080:8080"
     - "8081:8081"
@@ -19,7 +19,7 @@ mongodb:
   volumes:
     - "./data/mongo:/data/db"
 elasticsearch:
-  image: elasticsearch:1.4
+  image: elasticsearch:2.3.3
   ports:
     - "9200:9200"
     - "9300:9300"

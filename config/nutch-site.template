@@ -27,7 +27,7 @@
 
   <property>
   <name>elastic.host</name>
-  <value>172.17.0.3</value>
+  <value>172.17.0.2</value>
   <description>Comma-separated list of hostnames to send documents to using
   TransportClient. Either host and port must be defined or cluster.</description>
 </property>

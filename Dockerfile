@@ -1,35 +1,27 @@
-FROM ubuntu:14.04
+# Based on https://raw.githubusercontent.com/apache/nutch/master/docker/Dockerfile
 
-MAINTAINER Griffith T. Pickett <pickett65@gmail.com>
+FROM java:8
+MAINTAINER smartive AG <hello@smartive.ch>
 
-ENV JAVA_HOME "/usr/lib/jvm/java-7-openjdk-amd64/"
-ENV NUTCH_HOME "/usr/local/src/nutch"
-ENV SEEDLIST "http://nutch.apache.org/,http://test.com"
-ENV MONGO_HOST "localhost"
-ENV MONGO_PORT "27017"
-ENV ELASTICSEARCH_HOST "localhost"
-ENV ELASTICSEARCH_PORT "9300"
+WORKDIR /root/
 
-# install dependencies
-RUN apt-get update && apt-get -y upgrade && \
-	apt-get -y install wget openjdk-7-jdk ant git-core && \
-	mkdir /usr/local/src/nutch && mkdir /tmp/scripts
+# Get the package containing apt-add-repository installed for adding repositories
+RUN apt-get update && apt-get install -y software-properties-common
 
-ADD ./scripts /tmp/scripts
-ADD ./config /tmp/config
-RUN chmod +x /tmp/scripts/startup.sh 
+# Add the repository that we'll pull java down from.
+#RUN add-apt-repository -y ppa:webupd8team/java && apt-get update && apt-get upgrade -y
 
+# Get Oracle Java 1.7 installed
+#RUN echo oracle-java7-installer shared/accepted-oracle-license-v1-1 select true | /usr/bin/debconf-set-selections && apt-get install -y oracle-java7-installer oracle-java7-set-default
 
-# download and build apache nutch
-RUN git clone https://github.com/apache/nutch.git ${NUTCH_HOME}
-WORKDIR ${NUTCH_HOME}
-RUN git checkout branch-2.3.1 && \
-	mv /tmp/config/ivy.xml ${NUTCH_HOME}/ivy/ivy.xml && \
-	ant runtime
+# Install various dependencies
+RUN apt-get install -y ant openssh-server vim telnet git rsync curl build-essential 
 
+# Set up JAVA_HOME
+RUN echo 'export JAVA_HOME=$(readlink -f /usr/bin/java | sed "s:bin/java::")' >> $HOME/.bashrc
 
-EXPOSE 8081
-EXPOSE 8080
+# Checkout and build the nutch trunk
+RUN wget https://github.com/apache/nutch/archive/release-1.13.zip && unzip release-1.13.zip && mv nutch-release-1.13 nutch_source && cd nutch_source && ant
 
-# configure apache nutch
-ENTRYPOINT ["/tmp/scripts/startup.sh"]
+# Convenience symlink to Nutch runtime local
+RUN ln -s nutch_source/runtime/local $HOME/nutch
