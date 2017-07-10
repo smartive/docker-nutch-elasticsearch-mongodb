@@ -19,7 +19,7 @@ mongodb:
   volumes:
     - "./data/mongo:/data/db"
 elasticsearch:
-  image: elasticsearch:2.3.3
+  image: elasticsearch:5.4
   ports:
     - "9200:9200"
     - "9300:9300"
