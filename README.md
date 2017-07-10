@@ -16,7 +16,7 @@ oder
 
 ```
 echo "https://smartive.ch/" > seed.txt
-nutch/bin/crawl -i seed.txt crawldata 1
+nutch/bin/crawl -i -s seed.txt crawldata 2
 ```
 
 ES index only from existing crawl database:
