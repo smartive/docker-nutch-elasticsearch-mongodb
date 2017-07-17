@@ -1,4 +1,21 @@
-partly based on https://github.com/tpickett/mongo-elasticsearch-nutch
+# Apache Nutch Docker Build
+The [Dockerfile](./nutch/Dockerfile) provides a Docker Build of Apache Nutch published as [smartive/nutch](https://hub.docker.com/r/smartive/nutch/).
+There are two published builds:
+- `latest` contains [Apache Nutch v1.13](https://github.com/apache/nutch/tree/release-1.13) for Elasticsearch 2.3.*
+- `es-5` contains a [modified version of Apache Nutch v1.13](https://github.com/smartive/nutch/tree/feature/es-5) ready for Elasticsearch 5.4.*
+
+# Apache Nutch docker-compose Setup for Elasticsearch 2.3.* and 5.4.* and MongoDB
+
+[This repo nutch-elasticsearch-mongodb](https://github.com/smartive/docker-nutch-elasticsearch-mongodb) contains a [docker-compose](https://github.com/smartive/docker-nutch-elasticsearch-mongodb/blob/master/docker-compose.yml) configuration for Apache Nutch with Elasticsearch 2.3.* / 5.4.* and MongoDB.
+
+To get started checkout the [Repo](https://github.com/smartive/docker-nutch-elasticsearch-mongodb) and run:
+ 
+```bash
+git clone git@github.com:smartive/docker-nutch-elasticsearch-mongodb.git
+cd ./docker-nutch-elasticsearch-mongodb && docker-compose up
+```
+
+This will fire up the nutchserver and webapp. Visit [http://localhost:8080/](http://localhost:8080/).
 
 ```
 docker-compose run nutch bash
@@ -23,6 +40,9 @@ ES index only from existing crawl database:
 ```
 /root/nutch/bin/nutch index crawldata/crawldb -linkdb crawldata/linkdb crawldata/segments/20170706210640
 ```
+
+# Credits
+This Dockerfile and docker-compose Setup is partly based on [tpickett/mongo-elasticsearch-nutch](https://github.com/tpickett/mongo-elasticsearch-nutch).
 
 [Apache Nutch](http://nutch.apache.org/) is a highly extensible and scalable open source web crawler software project. A well matured, production ready crawler.
 
