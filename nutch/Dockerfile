@@ -3,6 +3,8 @@
 FROM java:8
 MAINTAINER smartive AG <hello@smartive.ch>
 
+ENV NUTCH_HOME $HOME/nutch
+
 WORKDIR /root/
 
 # Get the package containing apt-add-repository installed for adding repositories
@@ -15,7 +17,7 @@ RUN apt-get update && apt-get install -y software-properties-common
 #RUN echo oracle-java7-installer shared/accepted-oracle-license-v1-1 select true | /usr/bin/debconf-set-selections && apt-get install -y oracle-java7-installer oracle-java7-set-default
 
 # Install various dependencies
-RUN apt-get install -y ant openssh-server vim telnet git rsync curl build-essential 
+RUN apt-get install -y ant openssh-server vim telnet git rsync curl build-essential
 
 # Set up JAVA_HOME
 RUN echo 'export JAVA_HOME=$(readlink -f /usr/bin/java | sed "s:bin/java::")' >> $HOME/.bashrc
@@ -24,4 +26,9 @@ RUN echo 'export JAVA_HOME=$(readlink -f /usr/bin/java | sed "s:bin/java::")' >>
 RUN wget https://github.com/apache/nutch/archive/release-1.13.zip && unzip release-1.13.zip && mv nutch-release-1.13 nutch_source && cd nutch_source && ant
 
 # Convenience symlink to Nutch runtime local
-RUN ln -s nutch_source/runtime/local $HOME/nutch
+RUN ln -s nutch_source/runtime/local $NUTCH_HOME
+
+ADD ./startup.sh $HOME/startup.sh
+RUN chmod +x $HOME/startup.sh
+
+ENTRYPOINT ["${HOME}/startup.sh"]

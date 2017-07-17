@@ -34,7 +34,7 @@
 
 <property> 
   <name>elastic.port</name>
-  <value>9300</value>
+  <value>9200</value>
   <description>The port to connect to using TransportClient.</description>
 </property>
 
