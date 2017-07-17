@@ -40,7 +40,7 @@ vi nutch/conf/regex-urlfilter.txt
 
 Then start the crawl
 ```bash
-nutch/bin/crawl -i seed.txt crawldata 2
+nutch/bin/crawl -i -s seed.txt crawldata 2
 ```
 
 ES index only from existing crawl database:
