@@ -1,16 +1,14 @@
 nutch:
-  build: smartive/nutch
+  build: ./nutch
   ports:
     - "8080:8080"
     - "8081:8081"
   links:
     - "mongodb:mongodb"
     - "elasticsearch:elasticsearch"
-  environment:
-    - SEEDLIST="http://reddit.com/r/node/"
   volumes:
     - "./config/ivy.xml:/root/nutch/ivy/ivy.xml"
-    - "./config/nutch-site.template:/root/nutch/conf/nutch-site.xml"
+    - "./config/nutch-site.xml:/root/nutch/conf/nutch-site.xml"
     - "./crawldata:/root/crawldata"
 mongodb:
   image: mongo

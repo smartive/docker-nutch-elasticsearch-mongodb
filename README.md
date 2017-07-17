@@ -1,10 +1,13 @@
-# Apache Nutch Docker Build
+# Apache Nutch, Elasticsearch, MongoDB
+This repo contains 1) a Dockerfile build for Apache Nutch and 2) a docker-compose Setup for the usage with Elasticsearch and MongoDB.
+
+## Apache Nutch Docker Build
 The [Dockerfile](./nutch/Dockerfile) provides a Docker Build of Apache Nutch published as [smartive/nutch](https://hub.docker.com/r/smartive/nutch/).
 There are two published builds:
 - `latest` contains [Apache Nutch v1.13](https://github.com/apache/nutch/tree/release-1.13) for Elasticsearch 2.3.*
 - `es-5` contains a [modified version of Apache Nutch v1.13](https://github.com/smartive/nutch/tree/feature/es-5) ready for Elasticsearch 5.4.*
 
-# Apache Nutch docker-compose Setup for Elasticsearch 2.3.* and 5.4.* and MongoDB
+## Apache Nutch docker-compose Setup for Elasticsearch 2.3.* and 5.4.* and MongoDB
 
 [This repo nutch-elasticsearch-mongodb](https://github.com/smartive/docker-nutch-elasticsearch-mongodb) contains a [docker-compose](https://github.com/smartive/docker-nutch-elasticsearch-mongodb/blob/master/docker-compose.yml) configuration for Apache Nutch with Elasticsearch 2.3.* / 5.4.* and MongoDB.
 
@@ -17,22 +20,26 @@ cd ./docker-nutch-elasticsearch-mongodb && docker-compose up
 
 This will fire up the nutchserver and webapp. Visit [http://localhost:8080/](http://localhost:8080/).
 
-```
-docker-compose run nutch bash
-docker-compose run -p 8080:8080 -p 8081:8081 nutch bash
-```
+### Manual Run 
 
-```
-nutch/bin/nutch webapp &
-nutch/bin/nutch startserver &
+```bash
+docker-compose run -p 8080:8080 -p 8081:8081 --name=manual_nutch --rm --entrypoint=bash nutch
 ```
 
--> open http://localhost:8080
-
-oder
-
+Then inside the docker box create the seed file:
 ```
 echo "https://smartive.ch/" > seed.txt
+```
+
+Then open `regex-urlfilter.txt` and replace the last line to limit the crawl to the domain `smartive.ch`:
+```bash
+vi nutch/conf/regex-urlfilter.txt
+# Inside regex-urlfilter.txt replace the last line `+.` with:
++^https://smartive\.ch
+```
+
+Then start the crawl
+```bash
 nutch/bin/crawl -i seed.txt crawldata 2
 ```
 
