@@ -29,6 +29,6 @@ RUN wget https://github.com/apache/nutch/archive/release-1.13.zip && unzip relea
 RUN ln -s nutch_source/runtime/local $NUTCH_HOME
 
 ADD startup.sh /root/startup.sh
-RUN chmod +x $HOME/startup.sh
+RUN chmod +x /root/startup.sh
 
-ENTRYPOINT ["${HOME}/startup.sh"]
+ENTRYPOINT ["/root/startup.sh"]
