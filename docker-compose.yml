@@ -6,11 +6,9 @@ nutch:
   links:
     - "mongodb:mongodb"
     - "elasticsearch:elasticsearch"
-  environment:
-    - SEEDLIST="http://reddit.com/r/node/"
   volumes:
     - "./config/ivy.xml:/root/nutch/ivy/ivy.xml"
-    - "./config/nutch-site.template:/root/nutch/conf/nutch-site.xml"
+    - "./config/nutch-site.xml:/root/nutch/conf/nutch-site.template"
     - "./crawldata:/root/crawldata"
 mongodb:
   image: mongo

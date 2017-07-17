@@ -22,22 +22,24 @@ This will fire up the nutchserver and webapp. Visit [http://localhost:8080/](htt
 
 ### Manual Run 
 
-```
-docker-compose run nutch bash
-docker-compose run -p 8080:8080 -p 8081:8081 nutch bash
-```
-
-```
-nutch/bin/nutch webapp &
-nutch/bin/nutch startserver &
+```bash
+docker-compose run -p 8080:8080 -p 8081:8081 --name=manual_nutch --rm --entrypoint=bash nutch
 ```
 
--> open http://localhost:8080
-
-oder
-
+Then inside the docker box create the seed file:
 ```
 echo "https://smartive.ch/" > seed.txt
+```
+
+Then open `regex-urlfilter.txt` and replace the last line to limit the crawl to the domain `smartive.ch`:
+```bash
+vi nutch/conf/regex-urlfilter.txt
+# Inside regex-urlfilter.txt replace the last line `+.` with:
++^https://smartive\.ch
+```
+
+Then start the crawl
+```bash
 nutch/bin/crawl -i seed.txt crawldata 2
 ```
 
