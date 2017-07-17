@@ -30,7 +30,7 @@
 
     <property>
         <name>elastic.host</name>
-        <value>%ELASTICSEARCH_PORT_9300_TCP_ADDR%</value>
+        <value>elasticsearch</value>
         <description>Comma-separated list of hostnames to send documents to using
             TransportClient. Either host and port must be defined or cluster.
         </description>
@@ -38,7 +38,7 @@
 
     <property>
         <name>elastic.port</name>
-        <value>%ELASTICSEARCH_PORT_9300_TCP_PORT%</value>
+        <value>9300</value>
         <description>The port to connect to using TransportClient.</description>
     </property>
 

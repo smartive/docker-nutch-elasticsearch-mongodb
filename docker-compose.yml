@@ -8,7 +8,7 @@ nutch:
     - "elasticsearch:elasticsearch"
   volumes:
     - "./config/ivy.xml:/root/nutch/ivy/ivy.xml"
-    - "./config/nutch-site.xml:/root/nutch/conf/nutch-site.template"
+    - "./config/nutch-site.xml:/root/nutch/conf/nutch-site.xml"
     - "./crawldata:/root/crawldata"
 mongodb:
   image: mongo
