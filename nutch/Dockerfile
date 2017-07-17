@@ -22,7 +22,7 @@ RUN wget https://github.com/smartive/nutch/archive/feature/es-5.zip && unzip es-
 # Convenience symlink to Nutch runtime local
 RUN ln -s nutch_source/runtime/local $NUTCH_HOME
 
-ADD ./startup.sh $HOME/startup.sh
+ADD startup.sh /root/startup.sh
 RUN chmod +x $HOME/startup.sh
 
 ENTRYPOINT ["${HOME}/startup.sh"]
