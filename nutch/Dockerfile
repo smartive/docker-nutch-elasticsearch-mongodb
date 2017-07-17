@@ -3,7 +3,7 @@
 FROM java:8
 MAINTAINER smartive AG <hello@smartive.ch>
 
-ENV NUTCH_HOME $HOME/nutch
+ENV NUTCH_HOME /root/nutch
 
 WORKDIR /root/
 
