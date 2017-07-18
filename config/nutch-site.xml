@@ -21,14 +21,58 @@
 
     <property>
         <name>http.content.limit</name>
-        <value>65536000000</value>
+        <value>-1</value>
     </property>
 
     <property>
         <name>plugin.includes</name>
+        <!--
+        <value>protocol-httpclient|protocol-http|indexer-elastic-rest|urlfilter-regex|parse-(html|tika)|index-(basic|more)|urlnormalizer-(pass|regex|basic)|scoring-opic</value>
+        -->
         <value>
-            protocol-http|protocol-httpclient|urlfilter-regex|index-(basic|anchor|more|metadata)|query-(basic|site|url|lang)|indexer-elastic-rest|nutch-extensionpoints|parse-(text|html|tika|metatags)|summary-basic|scoring-opic|urlnormalizer-(pass|regex|basic)
+            protocol-httpclient|protocol-http|urlfilter-regex|index-(basic|anchor|metadata)|query-(basic|site|url|lang)|indexer-elastic-rest|parse-(text|html|tika|metatags)|scoring-opic|urlnormalizer-(pass|regex|basic)
         </value>
+    </property>
+    <!--
+    <property>
+        <name>plugin.includes</name>
+        <value>
+            <value>protocol-http|protocol-httpclient|urlfilter-regex|parse-(html|tika|metatags)|index-(basic|anchor|metadata)|indexer-elastic-rest|scoring-opic|urlnormalizer-(pass|regex|basic)</value>
+        </value>
+    </property>
+    -->
+
+    <!-- Tika Plugin properties -->
+    <!--
+    <property>
+      <name>tika.htmlmapper.classname</name>
+      <value>org.apache.tika.parser.html.IdentityHtmlMapper</value>
+      <description>Classname of Tika HTMLMapper to use. Influences the elements included in the DOM and hence
+      the behavior of the HTMLParseFilters.
+      </description>
+    </property>
+    -->
+    <property>
+        <name>tika.uppercase.element.names</name>
+        <value>true</value>
+        <description>Determines whether TikaParser should uppercase the element name while generating the DOM
+            for a page, as done by Neko (used per default by parse-html)(see NUTCH-1592).
+        </description>
+    </property>
+    <property>
+        <name>tika.extractor</name>
+        <value>boilerpipe</value>
+        <description>
+            Which text extraction algorithm to use. Valid values are: boilerpipe or none.
+        </description>
+    </property>
+    <property>
+        <name>tika.extractor.boilerpipe.algorithm</name>
+        <value>ArticleExtractor</value>
+        <description>
+            Which Boilerpipe algorithm to use. Valid values are: DefaultExtractor, ArticleExtractor
+            or CanolaExtractor.
+        </description>
     </property>
 
     <!-- Elasticsearch properties -->
@@ -101,7 +145,8 @@
         <name>elastic.rest.host</name>
         <value>elasticsearch</value>
         <description>The hostname to send documents to using Elasticsearch Jest. Both host
-            and port must be defined</description>
+            and port must be defined
+        </description>
     </property>
 
     <property>
@@ -130,7 +175,7 @@
 
     <property>
         <name>elastic.rest.max.bulk.size</name>
-        <value>2621440000</value>
+        <value>26214400</value>
         <description>Maximum size of the bulk in bytes.</description>
     </property>
 
