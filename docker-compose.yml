@@ -1,5 +1,5 @@
 nutch:
-  build: smartive/nutch
+  image: smartive/nutch
   ports:
     - "8080:8080"
     - "8081:8081"
