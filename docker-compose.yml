@@ -9,6 +9,7 @@ nutch:
   volumes:
     - "./config/ivy.xml:/root/nutch/ivy/ivy.xml"
     - "./config/nutch-site.xml:/root/nutch/conf/nutch-site.xml"
+    - "./config/regex-urlfilter.txt:/root/nutch/conf/regex-urlfilter.txt"
     - "./crawldata:/root/crawldata"
 mongodb:
   image: mongo
