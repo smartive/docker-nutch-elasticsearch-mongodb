@@ -20,9 +20,14 @@
     </property>
 
     <property>
+        <name>http.content.limit</name>
+        <value>65536000000</value>
+    </property>
+
+    <property>
         <name>plugin.includes</name>
         <value>
-            protocol-http|protocol-httpclient|urlfilter-regex|index-(basic|anchor|more|metadata)|query-(basic|site|url|lang)|indexer-elastic|nutch-extensionpoints|parse-(text|html|tika|metatags)|summary-basic|scoring-opic|urlnormalizer-(pass|regex|basic)
+            protocol-http|protocol-httpclient|urlfilter-regex|index-(basic|anchor|more|metadata)|query-(basic|site|url|lang)|indexer-elastic-rest|nutch-extensionpoints|parse-(text|html|tika|metatags)|summary-basic|scoring-opic|urlnormalizer-(pass|regex|basic)
         </value>
     </property>
 
@@ -52,7 +57,7 @@
 
     <property>
         <name>elastic.index</name>
-        <value>nutch</value>
+        <value>nutch_test</value>
         <description>Default index to send documents to.</description>
     </property>
 
@@ -91,12 +96,80 @@
         </description>
     </property>
 
+    <!--elasticsearch rest properties-->
     <property>
-        <name>http.content.limit</name>
-        <value>6553600</value>
+        <name>elastic.rest.host</name>
+        <value>elasticsearch</value>
+        <description>The hostname to send documents to using Elasticsearch Jest. Both host
+            and port must be defined</description>
+    </property>
+
+    <property>
+        <name>elastic.rest.port</name>
+        <value>9200</value>
+        <description>The port to connect to using Elasticsearch Jest.</description>
+    </property>
+
+    <property>
+        <name>elastic.rest.index</name>
+        <value>nutch_rest</value>
+        <description>Default index to send documents to.</description>
+    </property>
+
+    <property>
+        <name>elastic.rest.type</name>
+        <value>doc</value>
+        <description>Default type to send documents to.</description>
+    </property>
+
+    <property>
+        <name>elastic.rest.max.bulk.docs</name>
+        <value>250</value>
+        <description>Maximum size of the bulk in number of documents.</description>
+    </property>
+
+    <property>
+        <name>elastic.rest.max.bulk.size</name>
+        <value>2621440000</value>
+        <description>Maximum size of the bulk in bytes.</description>
+    </property>
+
+    <property>
+        <name>elastic.rest.https</name>
+        <value>false</value>
+        <description>
+            "true" to enable https, "false" to disable https
+            If you've disabled http access (by forcing https), be sure to
+            set this to true, otherwise you might get "connection reset by peer".
+        </description>
+    </property>
+
+    <property>
+        <name>elastic.rest.user</name>
+        <value/>
+        <description>Username for auth credentials (only used when https is enabled)</description>
+    </property>
+
+    <property>
+        <name>elastic.rest.password</name>
+        <value/>
+        <description>Password for auth credentials (only used when https is enabled)</description>
+    </property>
+
+    <property>
+        <name>elastic.rest.trustallhostnames</name>
+        <value>false</value>
+        <description>
+            "true" to trust elasticsearch server's certificate even if its listed domain name does not
+            match the domain they are hosted on
+            "false" to check if the elasticsearch server's certificate's listed domain is the same domain
+            that it is hosted on, and if it doesn't, then fail to index
+            (only used when https is enabled)
+        </description>
     </property>
 
     <!-- Used only if plugin parse-metatags is enabled. -->
+    <!-- see: https://wiki.apache.org/nutch/IndexMetatags -->
     <property>
         <name>metatags.names</name>
         <value>author,description,keywords,image,</value>

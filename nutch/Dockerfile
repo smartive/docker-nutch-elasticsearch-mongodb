@@ -23,7 +23,7 @@ RUN apt-get install -y ant openssh-server vim telnet git rsync curl build-essent
 #RUN echo 'export JAVA_HOME=$(readlink -f /usr/bin/java | sed "s:bin/java::")' >> $HOME/.bashrc
 
 # Checkout and build the nutch trunk
-RUN wget https://github.com/apache/nutch/archive/release-1.13.zip && unzip release-1.13.zip && mv nutch-release-1.13 nutch_source && cd nutch_source && ant
+RUN wget https://github.com/apache/nutch/archive/master.zip && unzip master.zip && mv nutch-master nutch_source && cd nutch_source && ant
 
 # Convenience symlink to Nutch runtime local
 RUN ln -s nutch_source/runtime/local $NUTCH_HOME
