@@ -22,7 +22,7 @@
     <property>
         <name>plugin.includes</name>
         <value>
-            protocol-(http|httpclient)|urlfilter-regex|index-(basic|more)|query-(basic|site|url|lang)|indexer-elastic|nutch-extensionpoints|parse-(text|html|msexcel|msword|mspowerpoint|pdf)|summary-basic|scoring-opic|urlnormalizer-(pass|regex|basic)|parse-(html|tika|metatags)|index-(basic|anchor|more|metadata)
+            protocol-http|protocol-httpclient|urlfilter-regex|index-(basic|more|metadata)|query-(basic|site|url|lang)|indexer-elastic|nutch-extensionpoints|parse-(text|html|msexcel|msword|mspowerpoint|pdf)|summary-basic|scoring-opic|urlnormalizer-(pass|regex|basic)|parse-(html|tika|metatags)|index-(basic|anchor|more|metadata)
         </value>
     </property>
 
@@ -94,6 +94,42 @@
     <property>
         <name>http.content.limit</name>
         <value>6553600</value>
+    </property>
+
+    <!-- Used only if plugin parse-metatags is enabled. -->
+    <property>
+        <name>metatags.names</name>
+        <value>author,description,keywords,image,</value>
+        <description>Names of the metatags to extract, separated by ','.
+            Use '*' to extract all metatags. Prefixes the names with 'metatag.'
+            in the parse-metadata. For instance to index description and keywords,
+            you need to activate the plugin index-metadata and set the value of the
+            parameter 'index.parse.md' to 'metatag.description,metatag.keywords'.
+        </description>
+    </property>
+    <property>
+        <name>index.parse.md</name>
+        <value>metatag.description,metatag.keywords,metatag.author,metatag.image</value>
+        <description>
+            Comma-separated list of keys to be taken from the parse metadata to generate fields.
+            Can be used e.g. for 'description' or 'keywords' provided that these values are generated
+            by a parser (see parse-metatags plugin)
+        </description>
+    </property>
+    <property>
+        <name>index.content.md</name>
+        <value/>
+        <description>
+            Comma-separated list of keys to be taken from the content metadata to generate fields.
+        </description>
+    </property>
+    <property>
+        <name>index.db.md</name>
+        <value/>
+        <description>
+            Comma-separated list of keys to be taken from the crawldb metadata to generate fields.
+            Can be used to index values propagated from the seeds with the plugin urlmeta
+        </description>
     </property>
 
 </configuration>
