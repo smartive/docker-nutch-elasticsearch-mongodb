@@ -22,7 +22,7 @@
     <property>
         <name>plugin.includes</name>
         <value>
-            protocol-http|protocol-httpclient|urlfilter-regex|index-(basic|more|metadata)|query-(basic|site|url|lang)|indexer-elastic|nutch-extensionpoints|parse-(text|html|msexcel|msword|mspowerpoint|pdf)|summary-basic|scoring-opic|urlnormalizer-(pass|regex|basic)|parse-(html|tika|metatags)|index-(basic|anchor|more|metadata)
+            protocol-http|protocol-httpclient|urlfilter-regex|index-(basic|anchor|more|metadata)|query-(basic|site|url|lang)|indexer-elastic|nutch-extensionpoints|parse-(text|html|tika|metatags)|summary-basic|scoring-opic|urlnormalizer-(pass|regex|basic)
         </value>
     </property>
 
