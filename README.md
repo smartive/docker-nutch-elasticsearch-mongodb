@@ -1,6 +1,8 @@
 # Apache Nutch, Elasticsearch, MongoDB
 This repo contains 1) a Dockerfile build for Apache Nutch and 2) a docker-compose Setup for the usage with Elasticsearch and MongoDB.
 
+Info: Currently MongoDB is not attached and used.
+
 ## Apache Nutch Docker Build
 The [Dockerfile](./nutch/Dockerfile) provides a Docker Build of Apache Nutch published as [smartive/nutch](https://hub.docker.com/r/smartive/nutch/).
 There are two published builds:
