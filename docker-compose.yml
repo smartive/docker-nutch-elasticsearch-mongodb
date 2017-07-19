@@ -22,3 +22,10 @@ elasticsearch:
   ports:
     - "9200:9200"
     - "9300:9300"
+cerebro:
+  image: yannart/cerebro
+  command: bin/cerebro -Dhosts.0.host=http://elasticsearch:9200
+  ports:
+    - "9000:9000"
+  links:
+    - "elasticsearch:elasticsearch"

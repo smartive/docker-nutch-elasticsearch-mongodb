@@ -11,18 +11,19 @@ There are two published builds:
 
 ## Apache Nutch docker-compose Setup for Elasticsearch 2.3.* and 5.4.* and MongoDB
 
-[This repo nutch-elasticsearch-mongodb](https://github.com/smartive/docker-nutch-elasticsearch-mongodb) contains a [docker-compose](https://github.com/smartive/docker-nutch-elasticsearch-mongodb/blob/master/docker-compose.yml) configuration for Apache Nutch with Elasticsearch 2.3.* / 5.4.* and MongoDB.
+[This repo nutch-elasticsearch-mongodb](https://github.com/smartive/docker-nutch-elasticsearch-mongodb) contains a [docker-compose](https://github.com/smartive/docker-nutch-elasticsearch-mongodb/blob/master/docker-compose.yml) configuration for Apache Nutch with Elasticsearch 2.3.* / 5.4.*, MongoDB and Cerebro.
 
 To get started checkout the [Repo](https://github.com/smartive/docker-nutch-elasticsearch-mongodb) and run:
- 
+
 ```bash
 git clone git@github.com:smartive/docker-nutch-elasticsearch-mongodb.git
 cd ./docker-nutch-elasticsearch-mongodb && docker-compose up
 ```
 
 This will fire up the nutchserver and webapp. Visit [http://localhost:8080/](http://localhost:8080/).
+To access Cerebro open [http://localhost:9000/](http://localhost:9000/) in your browser.
 
-### Manual Run 
+### Manual Run
 
 ```bash
 docker-compose run -p 8080:8080 -p 8081:8081 --name=manual_nutch --rm --entrypoint=bash nutch
