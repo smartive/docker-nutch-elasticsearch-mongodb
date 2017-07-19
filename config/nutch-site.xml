@@ -26,30 +26,12 @@
 
     <property>
         <name>plugin.includes</name>
-        <!--
-        <value>protocol-httpclient|protocol-http|indexer-elastic-rest|urlfilter-regex|parse-(html|tika)|index-(basic|more)|urlnormalizer-(pass|regex|basic)|scoring-opic</value>
-        -->
         <value>
-            protocol-httpclient|protocol-http|urlfilter-regex|index-(basic|anchor|metadata)|query-(basic|site|url|lang)|indexer-elastic-rest|parse-(text|html|tika|metatags)|scoring-opic|urlnormalizer-(pass|regex|basic)
+            protocol-httpclient|protocol-http|urlfilter-regex|index-(basic|anchor|metadata)|headings|language-identifier|query-(basic|site|url|lang)|indexer-elastic-rest|parse-(text|html|tika|metatags)|scoring-opic|urlnormalizer-(pass|regex|basic)
         </value>
     </property>
-    <!--
-    <property>
-        <name>plugin.includes</name>
-        <value>protocol-http|protocol-httpclient|urlfilter-regex|parse-(html|tika|metatags)|index-(basic|anchor|metadata)|indexer-elastic-rest|scoring-opic|urlnormalizer-(pass|regex|basic)</value>
-    </property>
-    -->
 
     <!-- Tika Plugin properties -->
-    <!--
-    <property>
-      <name>tika.htmlmapper.classname</name>
-      <value>org.apache.tika.parser.html.IdentityHtmlMapper</value>
-      <description>Classname of Tika HTMLMapper to use. Influences the elements included in the DOM and hence
-      the behavior of the HTMLParseFilters.
-      </description>
-    </property>
-    -->
     <property>
         <name>tika.uppercase.element.names</name>
         <value>true</value>
@@ -70,71 +52,6 @@
         <description>
             Which Boilerpipe algorithm to use. Valid values are: DefaultExtractor, ArticleExtractor
             or CanolaExtractor.
-        </description>
-    </property>
-
-    <!-- Elasticsearch properties -->
-
-    <property>
-        <name>elastic.host</name>
-        <value>elasticsearch</value>
-        <description>Comma-separated list of hostnames to send documents to using
-            TransportClient. Either host and port must be defined or cluster.
-        </description>
-    </property>
-
-    <property>
-        <name>elastic.port</name>
-        <value>9300</value>
-        <description>The port to connect to using TransportClient.</description>
-    </property>
-
-    <property>
-        <name>elastic.cluster</name>
-        <value>elasticsearch</value>
-        <description>The cluster name to discover. Either host and port must be defined
-            or cluster.
-        </description>
-    </property>
-
-    <property>
-        <name>elastic.index</name>
-        <value>nutch_test</value>
-        <description>Default index to send documents to.</description>
-    </property>
-
-    <property>
-        <name>elastic.max.bulk.docs</name>
-        <value>250</value>
-        <description>Maximum size of the bulk in number of documents.</description>
-    </property>
-
-    <property>
-        <name>elastic.max.bulk.size</name>
-        <value>2500500</value>
-        <description>Maximum size of the bulk in bytes.</description>
-    </property>
-
-    <property>
-        <name>elastic.exponential.backoff.millis</name>
-        <value>100</value>
-        <description>Initial delay for the BulkProcessor's exponential backoff policy.
-        </description>
-    </property>
-
-    <property>
-        <name>elastic.exponential.backoff.retries</name>
-        <value>10</value>
-        <description>Number of times the BulkProcessor's exponential backoff policy
-            should retry bulk operations.
-        </description>
-    </property>
-
-    <property>
-        <name>elastic.bulk.close.timeout</name>
-        <value>600</value>
-        <description>Number of seconds allowed for the BulkProcessor to complete its
-            last operation.
         </description>
     </property>
 
@@ -225,7 +142,7 @@
     </property>
     <property>
         <name>index.parse.md</name>
-        <value>metatag.description,metatag.keywords,metatag.author,metatag.image</value>
+        <value>metatag.description,metatag.keywords,metatag.author,metatag.image,h1,h2,h3</value>
         <description>
             Comma-separated list of keys to be taken from the parse metadata to generate fields.
             Can be used e.g. for 'description' or 'keywords' provided that these values are generated
@@ -248,40 +165,17 @@
         </description>
     </property>
 
-    <!-- Used only if plugin parse-metatags is enabled. -->
     <property>
-        <name>metatags.names</name>
-        <value>author,description,keywords,image,</value>
-        <description>Names of the metatags to extract, separated by ','.
-            Use '*' to extract all metatags. Prefixes the names with 'metatag.'
-            in the parse-metadata. For instance to index description and keywords,
-            you need to activate the plugin index-metadata and set the value of the
-            parameter 'index.parse.md' to 'metatag.description,metatag.keywords'.
-        </description>
+        <name>headings</name>
+        <value>h1,h2,h3</value>
+        <description>Comma separated list of headings to retrieve from the document</description>
     </property>
+
     <property>
-        <name>index.parse.md</name>
-        <value>metatag.description,metatag.keywords,metatag.author,metatag.image</value>
-        <description>
-            Comma-separated list of keys to be taken from the parse metadata to generate fields.
-            Can be used e.g. for 'description' or 'keywords' provided that these values are generated
-            by a parser (see parse-metatags plugin)
-        </description>
+        <name>headings.multivalued</name>
+        <value>true</value>
+        <description>Whether to support multivalued headings.</description>
     </property>
-    <property>
-        <name>index.content.md</name>
-        <value/>
-        <description>
-            Comma-separated list of keys to be taken from the content metadata to generate fields.
-        </description>
-    </property>
-    <property>
-        <name>index.db.md</name>
-        <value></value>
-        <description>
-            Comma-separated list of keys to be taken from the crawldb metadata to generate fields.
-            Can be used to index values propagated from the seeds with the plugin urlmeta
-        </description>
-    </property>
+
 
 </configuration>

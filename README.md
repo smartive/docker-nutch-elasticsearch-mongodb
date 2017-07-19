@@ -24,20 +24,27 @@ This will fire up the nutchserver and webapp. Visit [http://localhost:8080/](htt
 
 ### Manual Run 
 
+Update the last line of `regex-urlfilter.txt` to only include the desired domains in the crawls. Change the following line
+
+```
++.
+```
+
+to
+
+```
++https://smartive\.ch
+```
+
+Then start the docker box
+
 ```bash
-docker-compose run -p 8080:8080 -p 8081:8081 --name=manual_nutch --rm --entrypoint=bash nutch
+docker-compose run --name=manual_nutch --rm --entrypoint=bash nutch
 ```
 
 Then inside the docker box create the seed file:
 ```
 echo "https://smartive.ch/" > seed.txt
-```
-
-Then open `regex-urlfilter.txt` and replace the last line to limit the crawl to the domain `smartive.ch`:
-```bash
-vi nutch/conf/regex-urlfilter.txt
-# Inside regex-urlfilter.txt replace the last line `+.` with:
-+^https://smartive\.ch
 ```
 
 Then start the crawl
