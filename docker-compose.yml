@@ -1,5 +1,5 @@
 nutch:
-  image: smartive/nutch
+  image: smartive/nutch:es-5
   ports:
     - "8080:8080"
     - "8081:8081"
@@ -18,7 +18,14 @@ mongodb:
   volumes:
     - "./data/mongo:/data/db"
 elasticsearch:
-  image: elasticsearch:2.3.3
+  image: elasticsearch:5.4
   ports:
     - "9200:9200"
     - "9300:9300"
+cerebro:
+  image: yannart/cerebro
+  command: bin/cerebro -Dhosts.0.host=http://elasticsearch:9200
+  ports:
+    - "9000:9000"
+  links:
+    - "elasticsearch:elasticsearch"
