@@ -251,7 +251,7 @@
         <description>
             A String value representing the flavour of Selenium
             WebDriver() to use. Currently the following options
-            exist - 'firefox', 'chrome', 'safari', 'opera', 'phantomJS', and 'remote'.
+            exist - 'firefox', 'chrome', 'safari', 'opera', 'phantomjs', and 'remote'.
             If 'remote' is used it is essential to also set correct properties for
             'selenium.hub.port', 'selenium.hub.path', 'selenium.hub.host' and
             'selenium.hub.protocol'.
