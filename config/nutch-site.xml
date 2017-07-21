@@ -26,12 +26,7 @@
 
     <property>
         <name>plugin.includes</name>
-        <!--
-        <value>protocol-httpclient|protocol-http|indexer-elastic-rest|urlfilter-regex|parse-(html|tika)|index-(basic|more)|urlnormalizer-(pass|regex|basic)|scoring-opic</value>
-        -->
-        <value>
-            protocol-httpclient|protocol-http|urlfilter-regex|index-(basic|anchor|metadata)|query-(basic|site|url|lang)|indexer-elastic-rest|parse-(text|html|tika|metatags)|scoring-opic|urlnormalizer-(pass|regex|basic)
-        </value>
+        <value>protocol-selenium|urlfilter-regex|index-(basic|anchor|metadata)|query-(basic|site|url|lang)|indexer-elastic-rest|parse-(text|html|tika|metatags)|scoring-opic|urlnormalizer-(pass|regex|basic)</value>
     </property>
     <!--
     <property>
@@ -247,6 +242,30 @@
         <description>
             Comma-separated list of keys to be taken from the crawldb metadata to generate fields.
             Can be used to index values propagated from the seeds with the plugin urlmeta
+        </description>
+    </property>
+
+    <property>
+        <name>selenium.driver</name>
+        <value>phantomjs</value>
+        <description>
+            A String value representing the flavour of Selenium
+            WebDriver() to use. Currently the following options
+            exist - 'firefox', 'chrome', 'safari', 'opera', 'phantomJS', and 'remote'.
+            If 'remote' is used it is essential to also set correct properties for
+            'selenium.hub.port', 'selenium.hub.path', 'selenium.hub.host' and
+            'selenium.hub.protocol'.
+        </description>
+    </property>
+
+    <!-- lib-selenium configuration -->
+    <property>
+        <name>libselenium.page.load.delay</name>
+        <value>10</value>
+        <description>
+            The delay in seconds to use when loading a page with lib-selenium. This
+            setting is used by protocol-selenium and protocol-interactiveselenium
+            since they depending on lib-selenium for fetching.
         </description>
     </property>
 
